@@ -1,10 +1,22 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
+import { ContactForm } from '../../components/contactForm/ContactForm.js';
+import { TileList } from "../../components/tileList/TileList.js";
 
-export const ContactsPage = () => {
+export const ContactsPage = (props) => {
   /*
   Define state variables for 
   contact info and duplicate check
   */
+ const currentContacts = props.contactsArr;
+
+ const [name,setName] = useState('');
+ const [phone,setPhone] = useState('');
+ const [email,setEmail] = useState(''); 
+ const [duplicate,setDuplicate] = useState(false);
+
+ const setContactData = props.newContact(name,phone,email);
+ 
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

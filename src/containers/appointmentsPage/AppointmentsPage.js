@@ -5,6 +5,7 @@ export const AppointmentsPage = () => {
   Define state variables for 
   appointment info
   */
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
