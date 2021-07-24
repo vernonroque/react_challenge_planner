@@ -8,11 +8,34 @@ export const ContactsPage = (props) => {
   contact info and duplicate check
   */
  const currentContacts = props.contactsArr;
-
+ 
  const [name,setName] = useState('');
  const [phone,setPhone] = useState('');
  const [email,setEmail] = useState(''); 
  const [duplicate,setDuplicate] = useState(false);
+
+ //console.log('The current contacts name: ' + name);
+ //console.log('The current contacts number: ' + phone);
+ //console.log('The current contacts email: ' + email);
+ console.log(currentContacts);
+
+ useEffect(() => {
+
+    
+  currentContacts.forEach(
+    testName => {
+
+      console.log(testName.name);
+      console.log('current state of name: ' + name)
+      console.log('duplicate value is: ' + duplicate)
+      if(testName.name === name)
+      setDuplicate(true);
+      if(!name)
+      setDuplicate(false);
+    }
+  )
+}
+);
 
  const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,29 +43,35 @@ export const ContactsPage = (props) => {
     Add contact info and clear data
     if the contact name is not a duplicate
     */
-   if(!duplicate)
-   props.newContact(name,phone,email);
-
+   //console.log(duplicate);
+   if(!duplicate){
+    props.newContact(name,phone,email);
+    //setDuplicate(false);
+    
+    setName('');
+    setPhone('');
+    setEmail('');
+    }
+    /*
+  else if(duplicate){
+    setDuplicate(false);
+  }*/
   };
+
 
   /*
   Using hooks, check for contact name in the 
   contacts array variable in props
   */
  //not sure if useEffect method is right
-  useEffect(() => {
-    currentContacts.forEach(testName => {
-      if(testName===currentContacts.name)
-      setDuplicate(true);
-    })
-   });
+  
 
   return (
     <div>
       <section>
         <h2>Add Contact</h2> 
         <ContactForm handleSubmit ={handleSubmit} 
-        setName ={setName} setPhone = {setPhone} setEmail = {setEmail} />
+        setName = {setName} setPhone = {setPhone} setEmail = {setEmail} />
       </section>
       <hr />
       <section>
