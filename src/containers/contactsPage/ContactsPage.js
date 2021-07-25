@@ -23,12 +23,12 @@ export const ContactsPage = (props) => {
 
     
   currentContacts.forEach(
-    testName => {
+    element => {
 
-      console.log(testName.name);
+      console.log(element.name);
       console.log('current state of name: ' + name)
       console.log('duplicate value is: ' + duplicate)
-      if(testName.name === name)
+      if(element.name === name)
       setDuplicate(true);
       if(!name)
       setDuplicate(false);
